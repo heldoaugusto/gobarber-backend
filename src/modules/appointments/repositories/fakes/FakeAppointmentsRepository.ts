@@ -24,14 +24,14 @@ class ApointmentsRepository implements IAppointmentsRepository {
     month,
     year,
   }: IFindAllInMonthFromProviderDTO): Promise<Appointment[]> {
-    const findAppointment = this.appointments.filter(
+    const appointments = this.appointments.filter(
       appointment =>
         appointment.provider_id === provider_id &&
         getMonth(appointment.date) + 1 === month &&
         getYear(appointment.date) === year
     );
 
-    return findAppointment;
+    return appointments;
   }
 
   public async findAllInDayFromProvider({
@@ -40,7 +40,7 @@ class ApointmentsRepository implements IAppointmentsRepository {
     month,
     year,
   }: IFindAllInDayFromProviderDTO): Promise<Appointment[]> {
-    const findAppointment = this.appointments.filter(
+    const appointments = this.appointments.filter(
       appointment =>
         appointment.provider_id === provider_id &&
         getDate(appointment.date) === day &&
@@ -48,7 +48,7 @@ class ApointmentsRepository implements IAppointmentsRepository {
         getYear(appointment.date) === year
     );
 
-    return findAppointment;
+    return appointments;
   }
 
   public async create({
